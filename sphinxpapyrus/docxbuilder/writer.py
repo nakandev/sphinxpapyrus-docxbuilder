@@ -183,7 +183,10 @@ class DocxTranslator(nodes.NodeVisitor):
                 num.add_lvlOverride(ilvl=0).add_startOverride(1)
             return self._insert_num(num)
         numbering = self.docx._part.numbering_part.numbering_definitions._numbering
-        numbering.add_num = MethodType(add_num, numbering, CT_Numbering)
+        if sys.version_info.major >= 3:
+            numbering.add_num = MethodType(add_num, numbering)
+        else:
+            numbering.add_num = MethodType(add_num, numbering, CT_Numbering)
         num = numbering.add_num(abstractNumId, True).numId
         return num
 
