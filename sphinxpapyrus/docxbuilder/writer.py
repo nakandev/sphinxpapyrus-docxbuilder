@@ -140,12 +140,14 @@ class DocxTranslator(nodes.NodeVisitor):
         self.r_style = None
 
     def _fignum_prefix(self, node):
-        figtype = self.builder.env.domains['std'].get_figtype(node)
-        format = self.builder.config.numfig_format.get(figtype)
-        alias = u'%s/%s' % (self.docnames[-1], figtype)
-        id = node['ids'][0]
-        nums = self.builder.fignumbers[alias][id]
-        prefix = format % '.'.join(map(str, nums))
+        prefix = ''
+        if self.builder.config.numfig:
+            figtype = self.builder.env.domains['std'].get_figtype(node)
+            format = self.builder.config.numfig_format.get(figtype)
+            alias = u'%s/%s' % (self.docnames[-1], figtype)
+            id = node['ids'][0]
+            nums = self.builder.fignumbers[alias][id]
+            prefix = format % '.'.join(map(str, nums))
         return prefix
 
     def _add_paragraph(self, text=None, style=None):
