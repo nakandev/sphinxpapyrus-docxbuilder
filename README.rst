@@ -28,9 +28,9 @@ Requirements
 Installation
 ------------
 
-If you use pip, run the following command::
+Run the following command::
 
-   pip install git+https://github.com/nakandev/sphinxpapyrus-docxbuilder.git
+   pip install sphinxpapyrus-docxbuilder
 
 Usage
 -----

@@ -20,9 +20,13 @@ def find_version(*file_paths):
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
 
+with open('README.rst') as f:
+    long_description = f.read()
+
 setup(name='sphinxpapyrus-docxbuilder',
       version=find_version('sphinxpapyrus', 'docxbuilder', '__init__.py'),
       description='A Sphinx extension for Word (.docx) file output',
+      long_description=long_description,
       author='nakandev',
       author_email='nakandev.s@gmail.com',
       url='https://github.com/nakandev/sphinxpapyrus-docxbuilder',
